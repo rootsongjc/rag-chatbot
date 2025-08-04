@@ -9,8 +9,7 @@
   "scripts": {
     "dev": "wrangler dev",
     "deploy": "wrangler deploy",
-    "ingest": "tsx scripts/fast-ingest.ts",
-    "fast-ingest": "tsx scripts/fast-ingest.ts",
+    "ingest": "tsx scripts/ingest.ts",
     "manual-ingest": "tsx scripts/manual-ingest.ts",
     "generate-titles": "tsx scripts/generate-title-dictionary.ts",
     "full-reindex": "tsx scripts/full-reindex.ts",
@@ -19,8 +18,7 @@
     "test:ui": "vitest --ui",
     "test:run": "vitest run",
     "test:e2e": "playwright test",
-    "test:e2e:ui": "playwright test --ui",
-    "verify-ingest": "tsx scripts/verify-ingest-logic.ts"
+    "test:e2e:ui": "playwright test --ui"
   },
   "devDependencies": {
     "@cloudflare/workers-types": "^4.20240701.0",

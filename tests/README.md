@@ -7,7 +7,7 @@ This directory contains comprehensive tests for the multilingual RAG (Retrieval-
 ```text
 tests/
 ├── unit/                    # Unit tests for individual functions
-│   ├── fast-ingest.test.ts  # Tests URL generation and language detection
+│   ├── ingest.test.ts  # Tests URL generation and language detection
 │   └── retriever.test.ts    # Tests document retrieval and language filtering
 ├── integration/             # Integration tests for combined functionality
 │   └── ingest-retriever.test.ts  # Tests full ingestion + retrieval flow
@@ -17,9 +17,9 @@ tests/
 
 ## Test Coverage
 
-### 1. Unit Tests for Fast-Ingest (`tests/unit/fast-ingest.test.ts`)
+### 1. Unit Tests for ingest (`tests/unit/ingest.test.ts`)
 
-Tests the URL generation and language detection logic from `scripts/fast-ingest.ts`:
+Tests the URL generation and language detection logic from `scripts/ingest.ts`:
 
 - ✅ **Chinese blog posts**: `zh/blog/post/index.md` → `https://your-site.com/blog/post` (language: zh)
 - ✅ **English blog posts**: `en/blog/post/index.md` → `https://your-site.com/en/blog/post` (language: en)  

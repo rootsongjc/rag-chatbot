@@ -36,7 +36,7 @@ function toUrlFromPath(filePath: string): { url: string; language: 'en' | 'zh' }
   return { url, language };
 }
 
-describe('fast-ingest URL and language metadata', () => {
+describe('ingest URL and language metadata', () => {
   it('should correctly identify Chinese blog posts', () => {
     const filePath = `${CONTENT_DIR}/zh/blog/some-post/index.md`;
     const { url, language } = toUrlFromPath(filePath);

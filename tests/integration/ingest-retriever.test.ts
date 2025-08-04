@@ -32,7 +32,7 @@ import { getRelevantDocuments } from '../../src/rag/retriever';
 const CONTENT_DIR = path.resolve(process.cwd(), '../../content');
 const BASE_URL = 'https://your-site.com';
 
-// Mock implementation of toUrlFromPath from fast-ingest
+// Mock implementation of toUrlFromPath from ingest
 function toUrlFromPath(filePath: string): { url: string; language: 'en' | 'zh' } {
   const rel = path.relative(CONTENT_DIR, filePath).replace(/\\/g, '/');
   const noExt = rel.replace(/\.md$/i, '');
@@ -65,7 +65,7 @@ function toUrlFromPath(filePath: string): { url: string; language: 'en' | 'zh' }
   return { url, language };
 }
 
-// Mock processFile function similar to fast-ingest
+// Mock processFile function similar to ingest
 async function processFile(filePath: string) {
   const raw = await fs.readFile(filePath, 'utf-8');
   const fm = matter(raw);
@@ -103,7 +103,7 @@ async function processFile(filePath: string) {
   return items;
 }
 
-describe('Integration: Fast-ingest + Retriever', () => {
+describe('Integration: ingest + Retriever', () => {
   beforeEach(() => {
     vi.clearAllMocks();
   });

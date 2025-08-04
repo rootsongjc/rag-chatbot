@@ -1,5 +1,5 @@
 import 'dotenv/config';
-import { processFile, uploadBatch } from './fast-ingest';
+import { processFile, uploadBatch } from './ingest';
 import path from 'node:path';
 import fs from 'node:fs/promises';
 
