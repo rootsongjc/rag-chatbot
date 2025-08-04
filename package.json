@@ -1,0 +1,43 @@
+{
+  "name": "website-rag-worker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "ingest": "tsx scripts/fast-ingest.ts",
+    "fast-ingest": "tsx scripts/fast-ingest.ts",
+    "manual-ingest": "tsx scripts/manual-ingest.ts",
+    "generate-titles": "tsx scripts/generate-title-dictionary.ts",
+    "full-reindex": "tsx scripts/full-reindex.ts",
+    "build": "tsc -b",
+    "test": "vitest",
+    "test:ui": "vitest --ui",
+    "test:run": "vitest run",
+    "test:e2e": "playwright test",
+    "test:e2e:ui": "playwright test --ui",
+    "verify-ingest": "tsx scripts/verify-ingest-logic.ts"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20240701.0",
+    "@playwright/test": "^1.42.0",
+    "playwright": "^1.42.0",
+    "tsx": "^4.7.0",
+    "typescript": "^5.4.0",
+    "vitest": "^1.6.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.1",
+    "globby": "^14.0.0",
+    "gray-matter": "^4.0.3",
+    "http-proxy-agent": "^7.0.2",
+    "https-proxy-agent": "^7.0.6",
+    "markdown-it": "^13.0.1",
+    "node-fetch": "^3.3.2",
+    "openai": "^5.10.2"
+  }
+}

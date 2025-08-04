@@ -1,0 +1,26 @@
+name = "website-rag-worker"
+main = "src/worker.ts"
+compatibility_date = "2024-07-01"
+
+# Custom domain
+routes = [
+  { pattern = "website-rag-worker.your-site.com", custom_domain = true }
+]
+
+[vars]
+# Choose 'gemini' or 'qwen'
+PROVIDER = "qwen"
+# Make sure this matches your Vectorize index dimension
+EMBED_DIM = 1024
+# LLM model for generation (gemini-2.5-flash-lite, gemini-1.5-flash, qwen-plus, etc.)
+LLM_MODEL = "qwen-turbo-latest"
+# Qwen embedding model
+QWEN_EMBED_MODEL = "text-embedding-v4"
+
+[[vectorize]]
+binding = "VECTORIZE"
+# Create this index in Cloudflare Vectorize beforehand
+index_name = "website-rag"
+
+[observability]
+enabled = true
