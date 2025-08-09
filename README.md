@@ -102,7 +102,6 @@ In your Hugo template (e.g., `layouts/partials/footer.html`), add the following,
   data-endpoint="https://<your-worker>.workers.dev"
   defer
 ></script>
-<div id="ai-chatbot"></div>
 ```
 
 This will display the chat widget in the bottom right corner of your site.
