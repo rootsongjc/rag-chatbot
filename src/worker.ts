@@ -362,20 +362,20 @@ export default {
     const LANGUAGE = detectLanguage();
     
     // Debug: log detailed detection info
-    console.log('[AI Chatbot v2.0] Language Detection Debug:');
-    console.log('- HTML lang:', document.documentElement.lang);
-    console.log('- URL path:', window.location.pathname);
-    console.log('- URL includes /en/:', window.location.pathname.includes('/en/'));
-    console.log('- URL includes /zh/:', window.location.pathname.includes('/zh/'));
-    console.log('- Navigator lang:', navigator.language || navigator.userLanguage);
-    console.log('- Final detected language:', LANGUAGE);
+    // console.log('[AI Chatbot v2.0] Language Detection Debug:');
+    // console.log('- HTML lang:', document.documentElement.lang);
+    // console.log('- URL path:', window.location.pathname);
+    // console.log('- URL includes /en/:', window.location.pathname.includes('/en/'));
+    // console.log('- URL includes /zh/:', window.location.pathname.includes('/zh/'));
+    // console.log('- Navigator lang:', navigator.language || navigator.userLanguage);
+    // console.log('- Final detected language:', LANGUAGE);
     
     // Multi-language text
     const TEXTS = {
         zh: {
-            title: 'AI 助理',
+            title: 'Jimmy 的 AI 助理',
             placeholder: '有什么可以帮您的吗？',
-            welcome: '您好！我是 AI 助理，可以帮您了解技术见解和经验分享。有什么想了解的吗？',
+            welcome: '您好！我是 Jimmy 的 AI 助理，可以帮您了解 Jimmy 的技术见解和经验分享。有什么想了解的吗？',
             sources: '参考资料',
             error: '抱歉，我暂时无法回应，请稍后再试。',
             connecting: '连接中...',
@@ -384,9 +384,9 @@ export default {
             copied: '已复制'
         },
         en: {
-            title: 'AI Assistant',
+            title: 'Jimmy\\'s AI Assistant',
             placeholder: 'What can I help you with?',
-            welcome: 'Hello! I\\'m an AI assistant. I can help you explore technical insights and experience. What would you like to know?',
+            welcome: 'Hello! I\\'m Jimmy\\'s AI assistant. I can help you explore Jimmy\\'s technical insights and experience. What would you like to know?',
             sources: 'References',
             error: 'Sorry, I\\'m temporarily unavailable. Please try again later.',
             connecting: 'Connecting...',
@@ -435,14 +435,15 @@ export default {
         }
         .ai-chatbot-widget {
             position: fixed;
-            bottom: 20px;
-            left: 20px;
+            right: 0px;
+            top: 50%;
+            transform: translateY(-50%);
             z-index: 10000;
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             transition: all 0.3s ease;
         }
 
-        .ai-chatbot-widget.mobile-right {
+        .ai-chatbot-widget.mobile-right {  
             right: 0 !important;
             left: auto !important;
         }
@@ -452,37 +453,11 @@ export default {
         }
         
         .ai-chatbot-collapsed {
-            width: 32px;
-            height: 80px;
-            border-radius: 6px 0 0 6px;
-            right: 0;
-            left: auto;
-            top: 50%;
-            transform: translateY(-50%);
-            padding: 6px 2px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            font-size: 10px;
-            font-weight: 500;
-            color: white;
-            text-align: center;
-            line-height: 1.1;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            user-select: none;
-        }
-        
-        .ai-chatbot-collapsed.mobile-tab {
-            width: 36px;
-            height: 88px;
-            border-radius: 6px 0 0 6px;
-            right: 2px;
+            /* 桌面端：右侧边缘标签样式，显示图标 */
+            width: 48px;
+            height: 120px;
+            border-radius: 14px 0 0 14px;
+            right: 0px;
             left: auto;
             top: 50%;
             transform: translateY(-50%);
@@ -491,41 +466,81 @@ export default {
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            font-size: 10px;
-            font-weight: 500;
-            color: white;
-            text-align: center;
-            line-height: 1.1;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            user-select: none;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
         
-        .ai-chatbot-collapsed.mobile-tab .ai-chatbot-mobile-icon {
-            font-size: 12px;
-            margin-bottom: 3px;
+        /* 移动端：更窄的标签，显示三点 */
+        .ai-chatbot-collapsed.mobile-tab {
+            width: 24px;
+            height: 100px;
+        }
+        /* Dark mode support for collapsed widget */
+        .dark-mode .ai-chatbot-collapsed {
+            background: rgba(45, 55, 72, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
-        .ai-chatbot-collapsed.mobile-tab .ai-chatbot-mobile-text {
-            font-size: 9px;
+        .dark-mode .ai-chatbot-collapsed.mobile-tab {
+            background: rgba(45, 55, 72, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        /* 桌面端显示聊天图标 */
+        .ai-chatbot-collapsed .ai-chatbot-icon {
+            color: #666;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 4px;
+        }
+        
+        .dark-mode .ai-chatbot-collapsed .ai-chatbot-icon {
+            color: #a0aec0;
+        }
+        
+        /* 桌面端显示文字 */
+        .ai-chatbot-collapsed .ai-chatbot-text {
+            font-size: 8px;
             font-weight: 600;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0px;
+            color: #666;
+            line-height: 1;
+            text-align: center;
+            letter-spacing: 0.5px;
         }
         
-        .ai-chatbot-collapsed.mobile-tab .ai-chatbot-mobile-text .char {
-            display: block;
+        .ai-chatbot-collapsed .ai-chatbot-text div {
+            margin: 1px 0;
+        }
+        
+        .dark-mode .ai-chatbot-collapsed .ai-chatbot-text {
+            color: #a0aec0;
+        }
+        
+        /* 移动端隐藏图标，显示三点 */
+        .ai-chatbot-collapsed.mobile-tab .ai-chatbot-icon {
+            display: none;
+        }
+        
+        .ai-chatbot-collapsed.mobile-tab::after {
+            content: "⋮";
+            font-size: 24px;
+            color: #666;
+            font-weight: 600;
             line-height: 1;
+            opacity: 0.8;
+        }
+        
+        .dark-mode .ai-chatbot-collapsed.mobile-tab::after {
+            color: #a0aec0;
         }
         
         .rotated-text {
-            transform: rotate(270deg);
-            transform-origin: center;
-            writing-mode: vertical-rl;
-            text-orientation: mixed;
-            white-space: nowrap;
-            font-size: 8px !important;
-            font-weight: 700;
-            letter-spacing: 0.3px;
+            display: none; /* Not needed for dots design */
         }
 
         @media (max-width: 768px) {
@@ -920,11 +935,30 @@ export default {
     
     // Create widget elements
     const widget = document.createElement('div');
-    widget.className = 'ai-chatbot-widget';
+    widget.className = 'ai-chatbot-widget mobile-right';
     
     const collapsed = document.createElement('div');
     collapsed.className = 'ai-chatbot-collapsed';
-    collapsed.innerHTML = '<div class="ai-chatbot-icon">💬</div>';
+    
+    // Desktop shows icon, mobile shows dots
+    if (isMobile) {
+        collapsed.classList.add('mobile-tab');
+        collapsed.innerHTML = ''; // Mobile: dots via CSS ::after
+    } else {
+        collapsed.innerHTML = '<div class="ai-chatbot-icon">💬</div>' +
+                            '<div class="ai-chatbot-text">' +
+                                '<div>ASK</div>' +
+                                '<div>JIMMY</div>' +
+                            '</div>'; // Desktop: chat icon + text
+    }
+    
+    // 确保初始位置正确
+    widget.style.position = 'fixed';
+    widget.style.right = '0px';
+    widget.style.left = 'auto';
+    widget.style.top = '50%';
+    widget.style.bottom = 'auto';
+    widget.style.transform = 'translateY(-50%)';
     
     const expanded = document.createElement('div');
     expanded.className = 'ai-chatbot-expanded';
@@ -938,12 +972,12 @@ export default {
     
     const title = document.createElement('div');
     title.className = 'ai-chatbot-title';
-    title.textContent = 'Ask AI';
+    title.textContent = 'Ask Jimmy';
     
     // Slogan below the title
     const slogan = document.createElement('div');
     slogan.className = 'ai-chatbot-slogan';
-    slogan.textContent = 'Talk to AI about anything';
+    slogan.textContent = 'Talk to Jimmy’s digital self';
     
     titleContainer.appendChild(title);
     titleContainer.appendChild(slogan);
@@ -1034,6 +1068,9 @@ export default {
     let currentPos = { x: 0, y: 0 };
     
     function startDrag(e) {
+        // 桌面端禁止拖拽
+        if (!isMobile) return;
+        
         if (isExpanded) return; // 仅在折叠状态时允许拖拽
         
         isDragging = true;
@@ -1126,10 +1163,9 @@ export default {
         if (isExpanded) {
             hideSnapZones();
             snapToEdge();
-} else {
+        } else {
             snapToCorner();
-            // Ensure desktop folds similarly to mobile
-            widget.classList.add('mobile-tab');
+            // Remove the mobile-tab class addition here as it's now handled in snapToCorner
         }
     }
     
@@ -1157,29 +1193,41 @@ export default {
     }
     
     function snapToCorner() {
-        // 桌面端和移动端都需要添加 mobile-tab 类和 mobile-right 类
-        collapsed.classList.add('mobile-tab');
+        // 桌面端和移动端都使用右侧边缘标签样式
         widget.classList.add('mobile-right');
         
-        // 确保标签内容正确显示
-        if (!collapsed.innerHTML.includes('ASK')) {
-            collapsed.innerHTML = '\\u003cdiv class=\\"ai-chatbot-mobile-icon\\"\\u003e💬\\u003c/div\\u003e\\u003cdiv class=\\"ai-chatbot-mobile-text rotated-text\\"\\u003eASK\\u003cbr\\u003eAI\\u003c/div\\u003e';
+        if (isMobile) {
+            collapsed.classList.add('mobile-tab');
+            // 移动端清空内容，使用 CSS ::after 显示三点图标
+            collapsed.innerHTML = '';
+        } else {
+            // 桌面端显示聊天图标和文字
+            collapsed.innerHTML = '<div class="ai-chatbot-icon">💬</div>' +
+                                '<div class="ai-chatbot-text">' +
+                                    '<div>ASK</div>' +
+                                    '<div>JIMMY</div>' +
+                                '</div>';
         }
         
-        // 强制设置位置样式，确保没有冲突
+        // 设置位置样式
         widget.style.position = 'fixed';
         widget.style.right = '0px';
         widget.style.left = 'auto';
         widget.style.bottom = 'auto';
         
-        // 如果用户拖拽过，保持拖拽后的垂直位置，否则默认居中
-        if (userDraggedPosition !== null) {
-            const maxY = window.innerHeight - widget.offsetHeight;
-            const constrainedY = Math.max(0, Math.min(userDraggedPosition, maxY));
-            widget.style.top = constrainedY + 'px';
-            widget.style.transform = 'none';
+        if (isMobile) {
+            // 移动端：如果用户拖拽过，保持拖拽后的垂直位置，否则默认居中
+            if (userDraggedPosition !== null) {
+                const maxY = window.innerHeight - widget.offsetHeight;
+                const constrainedY = Math.max(0, Math.min(userDraggedPosition, maxY));
+                widget.style.top = constrainedY + 'px';
+                widget.style.transform = 'none';
+            } else {
+                widget.style.top = '50%';
+                widget.style.transform = 'translateY(-50%)';
+            }
         } else {
-            // 强制设置默认居中位置，清除所有可能的冲突样式
+            // 桌面端：固定在中间，不可拖拽
             widget.style.top = '50%';
             widget.style.transform = 'translateY(-50%)';
         }
@@ -1214,11 +1262,10 @@ export default {
         }
     }
     
-    header.addEventListener('mousedown', startDrag);
-    collapsed.addEventListener('mousedown', startDrag);
-
-    // 移动端触摸事件监听器
+    // 只为移动端添加拖拽事件监听器
     if (isMobile) {
+        header.addEventListener('mousedown', startDrag);
+        collapsed.addEventListener('mousedown', startDrag);
         collapsed.addEventListener('touchstart', startDrag);
     }
     
@@ -1241,6 +1288,13 @@ export default {
         // 2. The event is within the widget but NOT on a scrollable element
         if (!isInChatWidget || (isInChatWidget && !isScrollableElement)) {
             e.preventDefault();
+        }
+    }
+    
+    // Handle ESC key to close chat window
+    function handleEscKey(e) {
+        if (e.key === 'Escape' || e.key === 'Esc') {
+            collapse();
         }
     }
     
@@ -1272,6 +1326,9 @@ export default {
             document.addEventListener('wheel', preventBodyScroll, { passive: false });
             document.addEventListener('keydown', preventBodyScroll, { passive: false });
         }
+        
+        // Add ESC key listener to close the chat window
+        document.addEventListener('keydown', handleEscKey);
 
         widget.classList.add('is-expanded');
         
@@ -1302,6 +1359,9 @@ export default {
             document.removeEventListener('wheel', preventBodyScroll);
             document.removeEventListener('keydown', preventBodyScroll);
         }
+        
+        // 移除 ESC 键监听器
+        document.removeEventListener('keydown', handleEscKey);
 
         widget.classList.remove('is-expanded');
 
@@ -1514,9 +1574,9 @@ export default {
     
     
     // Mobile-specific initialization
-if (true) {
+    if (isMobile) {
         collapsed.classList.add('mobile-tab');
-        collapsed.innerHTML = '\\u003cdiv class=\\"ai-chatbot-mobile-icon\\"\\u003e💬\\u003c/div\\u003e\\u003cdiv class=\\"ai-chatbot-mobile-text rotated-text\\"\\u003eASK\\u003cbr\\u003eAI\\u003c/div\\u003e';
+        collapsed.innerHTML = ''; // Clear content for mobile - dots will be shown via CSS
         widget.classList.add('mobile-right');
         widget.style.right = '0px';
         widget.style.left = 'auto';
@@ -1542,6 +1602,11 @@ if (true) {
         
         header.addEventListener('touchstart', startDrag);
         
+    } else {
+        // Desktop-specific initialization
+        // Content is already set in the initial creation, including text
+        // Position is already set to right edge center
+        // No need to override position here
     }
     
     // Initialize
