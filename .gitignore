@@ -7,7 +7,7 @@ dist/
 
 # Wrangler
 .wrangler/
-.dev.vars
+.dev.vars*
 
 # Local environment files
 .env*
