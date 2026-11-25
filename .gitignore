@@ -1,0 +1,27 @@
+# Dependencies
+node_modules/
+
+# Build output (tsc -b)
+dist/
+*.tsbuildinfo
+
+# Wrangler
+.wrangler/
+.dev.vars*
+
+# Local environment files
+.env*
+!.env.example
+
+# Test output (Vitest coverage, Playwright)
+coverage/
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+
+# Logs
+*.log
+
+# OS
+.DS_Store
