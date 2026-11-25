@@ -5,21 +5,18 @@
 	// More info: https://containers.dev/guide/dockerfile
 	"build": {
 		"dockerfile": "Dockerfile",
-		// Update 'VARIANT' to pick a Node version: 22, 20, 18, 16, 14. Use 'lts' to always get the latest LTS release.
+		// Update 'VARIANT' to pick a Node version: 22, 20. Use 'lts' to always get the latest LTS release.
 		"args": { "VARIANT": "22" }
 	},
 
-	"runArgs": [
-		"--network=host"
-	],
 	// Features to add to the dev container. More info: https://containers.dev/features.
 	// "features": {},
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	// "forwardPorts": [],
+	// Port used by `npm run dev` (wrangler dev).
+	"forwardPorts": [8787],
 
-	// Use 'postCreateCommand' to run commands after the container is created.
-	"postCreateCommand": "yarn install",
+	// Install the dependencies pinned in package-lock.json after the container is created.
+	"postCreateCommand": "npm ci",
 
 	// Configure tool-specific properties.
 	// "customizations": {},
